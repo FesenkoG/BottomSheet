@@ -290,6 +290,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     private func addShadow(containerView: UIView) {
         var shadingView = UIView()
+        shadingView.isUserInteractionEnabled = false
         if let blur = configuration.shadowConfiguration.blur {
             shadingView = UIVisualEffectView(effect: UIBlurEffect(style: blur))
         }

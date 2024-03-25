@@ -277,7 +277,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         addPullBarIfNeeded(containerView: containerView)
         if configuration.allowsPassthrough {
-            containerView.frame = frameOfPresentedViewInContainerView
+            containerView.frame = targetFrameForPresentedView()
         } else {
             addShadow(containerView: containerView)
         }
@@ -330,7 +330,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
         let windowInsets = presentedView?.window?.safeAreaInsets ?? cachedInsets
 
         let preferredHeight = presentedViewController.preferredContentSize.height + windowInsets.bottom
-        var maxHeight = containerView.bounds.height - windowInsets.top
+        var maxHeight = containerView.bounds.height - (configuration.allowsPassthrough ? 0 : windowInsets.top)
         if case .visible(let appearance) = configuration.pullBarConfiguration {
             maxHeight -= appearance.height
         }

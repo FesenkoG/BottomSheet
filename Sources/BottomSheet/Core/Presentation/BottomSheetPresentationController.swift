@@ -277,6 +277,7 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
         addShadow(containerView: containerView)
         addPullBarIfNeeded(containerView: containerView)
+        containerView.frame = frameOfPresentedViewInContainerView
     }
 
     private func addPullBarIfNeeded(containerView: UIView) {
@@ -290,8 +291,6 @@ public final class BottomSheetPresentationController: UIPresentationController {
 
     private func addShadow(containerView: UIView) {
         var shadingView = UIView()
-        shadingView.isUserInteractionEnabled = false
-        containerView.isUserInteractionEnabled = false
         if let blur = configuration.shadowConfiguration.blur {
             shadingView = UIVisualEffectView(effect: UIBlurEffect(style: blur))
         }
@@ -586,5 +585,11 @@ private extension UIScrollView {
 
     var isContentOriginInBounds: Bool {
         contentOffset.y <= -adjustedContentInset.top
+    }
+}
+
+final class PassthroughView: UIView {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        false
     }
 }

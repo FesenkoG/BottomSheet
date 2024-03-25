@@ -275,9 +275,12 @@ public final class BottomSheetPresentationController: UIPresentationController {
             return
         }
 
-        addShadow(containerView: containerView)
         addPullBarIfNeeded(containerView: containerView)
-        containerView.frame = frameOfPresentedViewInContainerView
+        if configuration.allowsPassthrough {
+            containerView.frame = frameOfPresentedViewInContainerView
+        } else {
+            addShadow(containerView: containerView)
+        }
     }
 
     private func addPullBarIfNeeded(containerView: UIView) {

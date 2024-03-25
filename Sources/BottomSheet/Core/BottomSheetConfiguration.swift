@@ -39,20 +39,24 @@ public struct BottomSheetConfiguration {
     public let cornerRadius: CGFloat
     public let pullBarConfiguration: PullBarConfiguration
     public let shadowConfiguration: ShadowConfiguration
+    public let allowsPassthrough: Bool
 
     public init(
         cornerRadius: CGFloat,
         pullBarConfiguration: PullBarConfiguration,
-        shadowConfiguration: ShadowConfiguration
+        shadowConfiguration: ShadowConfiguration,
+        allowsPassthrough: Bool
     ) {
         self.cornerRadius = cornerRadius
         self.pullBarConfiguration = pullBarConfiguration
         self.shadowConfiguration = shadowConfiguration
+        self.allowsPassthrough = allowsPassthrough
     }
 
     public static let `default` = BottomSheetConfiguration(
         cornerRadius: 10,
         pullBarConfiguration: .default,
-        shadowConfiguration: .default
+        shadowConfiguration: .default,
+        allowsPassthrough: false
     )
 }
